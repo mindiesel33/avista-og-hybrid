@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@100;300;400;500;600;700&family=Roboto:wght@100;300;400;500;700&display=swap");
+@import "aos/dist/aos.css";
+
+:root {
+  /* Avista Colors */
+  --primary-orange: #FF5F05;
+  --dark-orange: #8B2500;
+  --il-blue: #13294B;
+  --il-blue-dark: #0A1A33;
+  
+  /* OGGroup Legacy Variables (Transitioned to Avista) */
+  --primary: var(--primary-orange);
+  --secondary: var(--il-blue);
+  --font-family-default: "Roboto", sans-serif;
+  --font-family-title: "Barlow Condensed", sans-serif;
+  --font-family-sofia: "Inter", sans-serif; /* Sofia Pro Soft substitute */
+  
+  --default-transition: all 0.3s ease-in-out;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-black font-['Roboto'] antialiased overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-['Barlow_Condensed'] uppercase tracking-wider;
+  }
+}
+
+@layer components {
+  /* OGGroup Style Global Components */
+  .global-site-title {
+    @apply relative font-['Barlow_Condensed'] text-[70px] lg:text-[120px] font-medium leading-[0.8] tracking-[0.02em] uppercase;
+  }
+
+  .global-site-title span {
+    @apply block font-thin;
+  }
+
+  .global-site-title i {
+    @apply absolute bottom-0 left-0 w-full h-[1px] bg-white/20;
+  }
+
+  .global-site-title i::after {
+    @apply content-[''] absolute bottom-0 left-0 w-[52px] h-[3px] bg-primary-orange;
+  }
+
+  .global-btn {
+    @apply flex items-center justify-center px-8 h-[43px] bg-primary-orange text-white uppercase text-base tracking-[0.3em] font-['Barlow_Condensed'] transition-all duration-300 hover:bg-il-blue;
+  }
+
+  .global-btn em {
+    @apply inline-block rotate-45 text-sm ml-4;
+  }
+
+  /* FullPage Custom Styling */
+  .fp-watermark { display: none !important; }
+  
+  #fp-nav ul li a span, 
+  .fp-slidesNav ul li a span {
+    @apply bg-primary-orange !important;
+  }
+
+  /* Image Accordion Section Stylings */
+  .accordion-item {
+    @apply relative overflow-hidden transition-all duration-500 ease-in-out cursor-pointer grayscale hover:grayscale-0;
+  }
+  
+  .accordion-item.active {
+    @apply flex-[3] grayscale-0;
+  }
+}
+
+/* Custom Utilities for Masonry and Grids from OGGroup */
+.fp-list-masonry {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+.fp-list-item-wide {
+  @apply lg:col-span-2;
+}
+
+/* Transitions and Animations */
+.section-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.active .section-fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* AOS Tweaks */
+[data-aos] {
+  pointer-events: none;
+}
+.aos-animate {
+  pointer-events: auto;
+}
+
+/* Marquee for Footer or Sections */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
