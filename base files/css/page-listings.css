@@ -1,0 +1,7 @@
+/*
+ * For Sale / Rentals listings — page-specific CSS
+ * Adds OGGroup listings IDX styles on top of master.
+ * Covers: ip-listings, IDX-*, ip-banner, git-area, side-fixed-contact, etc.
+ */
+@import url('master.css');
+@import url('og-listings.css');

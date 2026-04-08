@@ -1,0 +1,70 @@
+/*
+ * AVISTA REAL ESTATE MAZATLÁN — Master Stylesheet
+ * =====================================================
+ * Load order: Avista base → OGGroup base (OGGroup wins on all conflicts)
+ * Do NOT change color scheme in this file yet — that's phase 2.
+ *
+ * Layer 1: Avista utility libraries (3rd-party plugins for Avista sections)
+ * Layer 2: Avista theme CSS (as-*, tx-*, wa-* component classes)
+ * Layer 3: OGGroup CSS (wins on font, base, typography conflicts)
+ */
+
+/* ── Layer 1: Utility / Plugin CSS ─────────────────────────────────────── */
+@import url('av-animate.css');        /* WOW.js animation base classes       */
+@import url('av-nice-select.css');    /* Nice Select styled dropdowns         */
+@import url('av-magnific-popup.css'); /* Lightbox / popup                     */
+@import url('av-swiper.css');         /* Swiper slider (Avista carousels)     */
+
+/* ── Layer 2: Avista Theme CSS (as-*, tx-*, wa-* classes) ──────────────── */
+@import url('av-core.css');           /* Primary Avista component library     */
+@import url('av-companion.css');      /* Avista companion / widget styles     */
+@import url('av-extra.css');          /* Avista extra / overrides             */
+
+/* ── Layer 3: OGGroup CSS (loaded last → wins on base + font conflicts) ── */
+@import url('og-defaults.css');       /* OGGroup resets and defaults          */
+@import url('og-global.css');         /* OGGroup global classes               */
+                                      /* (global-btn, global-site-title,      */
+                                      /*  fp-*, aj-*, testi-*, concierge-*,   */
+                                      /*  magazine-*, app-*, office-list-*,   */
+                                      /*  header-nav, site-header, etc.)      */
+@import url('og-global2.css');        /* OGGroup additional global styles     */
+
+/* ── Layer 4: Avista brand overrides (colors, logos, monograms) ─────────── */
+@import url('avista-overrides.css');  /* Red→Orange, gradients, logo swaps    */
+
+/* ── Site-level overrides (post-load) ──────────────────────────────────── */
+/*
+ * These rules apply AFTER all imports to handle specific cross-system
+ * conflicts without modifying the source files.
+ */
+
+/* Ensure OGGroup font stack takes precedence over Avista's body font */
+body {
+  font-family: var(--font-family-default, "Roboto", sans-serif);
+}
+
+/* OGGroup defines --font-family-title as Barlow Condensed — enforce it on
+   elements that use it in both systems */
+.global-site-title,
+.global-btn,
+.aj-name,
+.testi-head,
+.testi-name,
+.concierge-name,
+.magazine-name,
+.fp-price span,
+.fp-address {
+  font-family: var(--font-family-title, "Barlow Condensed", sans-serif);
+}
+
+/* Avista uses 'as-h-1' for headings — keep it but fall back to OG font */
+.as-h-1 {
+  font-family: var(--font-family-title, "Barlow Condensed", sans-serif);
+}
+
+/* Bootstrap grid collision — both systems ship Bootstrap; OGGroup wins */
+.container {
+  max-width: 1414px;
+  padding-left: 30px;
+  padding-right: 30px;
+}

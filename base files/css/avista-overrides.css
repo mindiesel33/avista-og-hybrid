@@ -1,0 +1,126 @@
+/*
+ * Avista Real Estate Mazatlán — Brand Overrides
+ * Applied AFTER OGGroup CSS. Handles:
+ *   1. CSS variable re-declaration for any dynamic uses
+ *   2. Illini blue accent color
+ *   3. Logo / monogram image swaps
+ *   4. Any residual red not caught by the direct find-replace
+ * ─────────────────────────────────────────────────────────────
+ * Primary orange : #FF5F05
+ * Gradient       : linear-gradient(to right, #FF5F05, #8B2500)
+ * Illini blue    : #13294B  (headers, badges, search bar bg)
+ * Dark orange    : #8B2500  (gradient end)
+ */
+
+/* ── 1. CSS Variable overrides ─────────────────────────────────── */
+:root {
+  --primary:        #FF5F05;
+  --primary-rgb:    255, 95, 5;
+  --primary-dark:   #8B2500;
+  --accent-blue:    #13294B;
+  --plyr-color-main: #FF5F05;
+}
+
+/* ── 2. Gradient text on big names (aj-name, concierge-name, etc.) ─ */
+.aj-name,
+.concierge-name,
+.magazine-name,
+.app-head .global-site-title strong {
+  background: linear-gradient(to right, #FF5F05, #8B2500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── 3. Accent fills — orange line/bar decorators ──────────────── */
+.global-site-title i::after,
+.aj-head::after,
+.concierge-head::after,
+.magazine-head::after,
+.app-head > div::after,
+.fp-price span::before,
+.magazine-bg::before {
+  background: #FF5F05 !important;
+}
+
+/* ── 4. Text color overrides (is-red → orange, spans → orange) ─── */
+.global-site-title.is-red,
+.app-head .global-site-title span,
+.app-content-text span {
+  color: #FF5F05 !important;
+}
+
+.fp-price span {
+  color: #FF5F05 !important;
+}
+
+/* ── 5. Global button — gradient hover + Avista SVG icon ───────── */
+a.global-btn::after,
+button.global-btn::after {
+  background: linear-gradient(to right, #FF5F05, #8B2500) !important;
+}
+
+a.global-btn:hover,
+button.global-btn:hover {
+  color: #FF5F05 !important;
+}
+
+/* Swap OGGroup monogram icon inside button for Avista SVG */
+a.global-btn span i,
+button.global-btn span i {
+  background-image: url('/reference_images/avista logo for button.svg') !important;
+  background-color: transparent !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+/* ── 6. Header — blue background when scrolled ─────────────────── */
+.site-header-scrolled,
+#site-header.site-header-scrolled {
+  background-color: #13294B !important;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ── 7. Monogram backgrounds — swap OGGroup logo for Avista mono ─ */
+/* Canvas/background monogram */
+.aj-monogram img,
+.bg-monogram img {
+  content: url('/reference_images/new avista mono.png');
+}
+
+/* Listing loop hover monogram */
+.fp-monogram .listing-icon-monogram {
+  background-image: url('/reference_images/avista mono for listing items (3).png') !important;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: block;
+  width: 120px;
+  height: 120px;
+}
+
+/* ── 8. Illini blue accent uses ─────────────────────────────────── */
+/* Search bar / filter bar background */
+.slide-icons,
+.slider-search-area {
+  color: #13294B;
+}
+
+/* Ocean view badge (listing cards) */
+.ocean-view-badge {
+  background: #13294B !important;
+  color: #fff !important;
+}
+
+/* ── 9. Residual red catch-all (anything that survived find-replace) */
+[style*="color: #b71f37"],
+[style*="color:#b71f37"],
+[style*="background: #b71f37"],
+[style*="background:#b71f37"],
+[style*="background-color: #b71f37"],
+[style*="background-color:#b71f37"] {
+  color: #FF5F05 !important;
+  background: #FF5F05 !important;
+  background-color: #FF5F05 !important;
+}
